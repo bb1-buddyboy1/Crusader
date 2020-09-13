@@ -16,7 +16,7 @@ Watch this [video](https://www.youtube.com/watch?v=X0bfymdt9vI) and read the [wi
 ## Usage
 See the [wiki](https://github.com/DrunkShulker/Bartender/wiki).
 
-## Updating Bartender
+## Update
 1. Note that updating to a new version will reset all of your Bartender settings!
 2. When a new version is available, Bartender sends a notification in game chat.
 3. Once you see this notification, go to [releases](https://github.com/DrunkShulker/Bartender/releases) and get the latest release `.jar`.
