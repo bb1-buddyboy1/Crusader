@@ -25,6 +25,6 @@ See the [wiki](https://github.com/DrunkShulker/Bartender/wiki).
 6. Launch Minecraft.
 
 ## Report bugs
-- Before reporting anything, see if you problem is already answered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
+- Before reporting anything, see if your problem is already answered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
 - You can report bugs/crashes/problems in [issues](https://github.com/DrunkShulker/Bartender/issues). Please describe the problem in detail and include the steps to reproduce.
 - Compatibility issues with utility mods other than Impact and Kami BLUE are most likely ignored!
