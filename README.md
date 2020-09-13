@@ -5,8 +5,6 @@ Some of Bartender's features need hacks from other clients in order to work prop
 
 Watch this [video](https://www.youtube.com/watch?v=X0bfymdt9vI) and read the [wiki](https://github.com/DrunkShulker/Bartender/wiki) to learn more about Bartender's features.
 
-Tested and developed on Windows. No macOS testing is done so far. So if you are a macOS user, please contact DrunkShulker on Discord and report if it worked or not.
-
 ## Installation
 1. It is recommended that you create a fresh instance of Minecraft for the Bartender installation. At least make a copy of your `.minecraft` directory so you have a backup in case anything goes wrong with the installation.
 2. Install Forge for Minecraft 1.12.2.
@@ -27,6 +25,6 @@ See the [wiki](https://github.com/DrunkShulker/Bartender/wiki).
 6. Launch Minecraft.
 
 ## Report bugs
+- Before reporting anything, see if you problem is already answered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
 - You can report bugs/crashes/problems in [issues](https://github.com/DrunkShulker/Bartender/issues). Please describe the problem in detail and include the steps to reproduce.
-- Before reporting anything, see if you problem is already aswered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
 - Compatibility issues with utility mods other than Impact and Kami BLUE are most likely ignored!
