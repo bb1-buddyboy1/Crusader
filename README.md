@@ -1,7 +1,7 @@
 # What's Bartender?
-Bartender is an utility mod for Minecraft 1.12.2. It is designed for [8b8t.xyz](https://www.8b8t.xyz/) anarchy server. Keep in mind that some of Bartender's features may not work on servers other than 8b8t, as they rely on 8b8t's server environment. Future releases will be designed to adapt into any changes 8b's environment may come across.
+Bartender is an utility mod for Minecraft 1.12.2. It's meant to be used on the [8b8t.xyz](https://www.8b8t.xyz/) anarchy server. Keep in mind that some features may not work on other servers, as they rely on 8b8t's server environment. Future releases will be designed to adapt into any changes 8b's environment may come across.
 
-Some of Bartender's features need hacks from other clients in order to work properly. See the list [here](https://github.com/DrunkShulker/Bartender/wiki/Required-hacks). You can use any hack client alongside Bartender, but only Impact and Kami BLUE are tested to be compatible by the Bartender creator DrunkShulker.
+Some of Bartender's features need hacks from other clients in order to work properly. See the list [here](https://github.com/DrunkShulker/Bartender/wiki/Required-hacks). You can use any hack client with Bartender, but only Impact and Kami BLUE are tested to be compatible.
 
 Watch this [video](https://www.youtube.com/watch?v=X0bfymdt9vI) and read the [wiki](https://github.com/DrunkShulker/Bartender/wiki) to learn more about Bartender's features.
 
@@ -23,6 +23,13 @@ See the [wiki](https://github.com/DrunkShulker/Bartender/wiki).
 4. Go to your `.minecraft` directory and delete a folder called `Bartender`.
 5. Replace release `.jar` with the new one in your `.minecraft/mods` directory.
 6. Launch Minecraft.
+
+## Credits
+Thanks to the following projects for making Bartender possible:
+- [KAMI Blue](https://github.com/kami-blue/client)
+- [MappedBus](https://github.com/caplogic/Mappedbus)
+- [Baritone](https://github.com/cabaletta/baritone)
+- [Forge](https://files.minecraftforge.net/)
 
 ## Report bugs
 - Before reporting anything, see if your problem is already answered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
