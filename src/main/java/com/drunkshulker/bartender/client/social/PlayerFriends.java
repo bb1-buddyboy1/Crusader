@@ -34,18 +34,25 @@ public class PlayerFriends {
 		}else {
 			String msg = "Impact is not installed.";
 			System.out.println(msg);
-			if(Minecraft.getMinecraft().player!=null)
+			if(Minecraft.getMinecraft().player!=null) {
 				Minecraft.getMinecraft().player.sendMessage(new TextComponentKeybind("<"+Bartender.NAME+"> "+msg));
+			}
 		}		
 	}
 	
 	public static void removeFriend(String name) {
-		if(!friends.contains(name))friends.add(name);
+		if(friends.contains(name)) {
+			friends.remove(name);
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentKeybind("<"+Bartender.NAME+"> "+name+" was removed from friends!"));
+		}
 		save();
 	}
 
 	public static void addFriend(String name) {
-		if(friends.contains(name))friends.remove(name);
+		if(!friends.contains(name)) {
+			friends.add(name);
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentKeybind("<"+Bartender.NAME+"> "+name+" was added as friend!"));
+		}
 		save();
 	}
 	

@@ -10,7 +10,6 @@ import java.util.TimerTask;
 
 import com.drunkshulker.bartender.Bartender;
 import com.drunkshulker.bartender.client.gui.clickgui.ClickGuiSetting;
-import com.drunkshulker.bartender.client.module.Bodyguard;
 import com.drunkshulker.bartender.client.social.PlayerGroup;
 import com.drunkshulker.bartender.util.Config;
 
@@ -27,86 +26,29 @@ public class ChatObserver {
 	public static boolean help = false;
 	public static boolean chatFix = false;
 	public static boolean afkResponse = false;
-	public static boolean allowLgbt = false;
+	public static boolean allowDrinks = false;
 	
 	public static boolean partyTPA = false;
 	
 	public static final char commandPrefix = '@';
-	private long lastLgbt = 0;
-	
+	private long lastDrinks = 0;
 	final String pornUrl = "https://www.pornhub.com/random";
+	
 	private long lastPornhubSearch = 0;
 	public static boolean pornhub = false;
 	Timer timer;
 	private String lastSafeChatMessage="";
 	
-	final String[] allSex = {
-			"Agender",
-			"Androgyne",
-			"Androgynous",
-			"Bigender",
-			"Cis",
-			"a cock sucker",
-			"Cisgender",
-			"a Cis Female",
-			"a Cis Male",
-			"a Cis Man",
-			"a Cis Woman",
-			"a Cisgender Female",
-			"a Cisgender Male",
-			"a Cisgender Man",
-			"a Cisgender Woman",
-			"a Female to Male",
-			"FTM",
-			"a Gender Fluid",
-			"a Gender Nonconforming",
-			"a Gender Questioning",
-			"a Gender Variant",
-			"Genderqueer",
-			"Bait's boyfriend",
-			"Intersex",
-			"a Male to Female",
-			"MTF",
-			"anime",
-			"Neither",
-			"Neutrois",
-			"Non-binary",
-			"Other",
-			"Pangender",
-			"Trans",
-			"a chicken",
-			"Trans*",
-			"a Trans Female",
-			"a Trans* Female",
-			"a Trans Male",
-			"a Trans* Male",
-			"Desert_Bunny's left testicle",
-			"a Trans Man",
-			"a Trans* Man",
-			"a Trans Person",
-			"a Trans* Person",
-			"a Trans Woman",
-			"a Trans* Woman",
-			"Transfeminine",
-			"Transgender",
-			"a Transgender Female",
-			"a Transgender Male",
-			"a Transgender Man",
-			"a Transgender Person",
-			"a Transgender Woman",
-			"Transmasculine",
-			"Attack helicopter",
-			"a Simp",
-			"Gay",
-			"a virgin",
-			"Faggot",
-			"Transsexual",
-			"a Transsexual Female",
-			"a Transsexual Male",
-			"a Transsexual Man",
-			"a Transsexual Person",
-			"a Transsexual Woman",
-			"Two-Spirit",
+	final String[] allDrinks = {
+			"beer",
+			"martini",
+			"vodka",
+			"red wine",
+			"milk",
+			"water",
+			"coke",
+			"tequila",
+			"red bull"
 	};
 	
 	@SubscribeEvent
@@ -119,8 +61,8 @@ public class ChatObserver {
 			String text = getMessageText(sender, message);
 
 			
-			if(allowLgbt) {
-				if(lgbt(message, sender, text)) return;
+			if(allowDrinks) {
+				if(orderDrinks(message, sender, text)) return;
 			}
 			
 			if(help) {
@@ -240,31 +182,37 @@ public class ChatObserver {
 		}
 	}
 
-	private boolean lgbt(String message, String sender, String msgOnly) {
-		if(lastLgbt>0L&&System.currentTimeMillis()-lastLgbt<2000) return false; 
+	private boolean orderDrinks(String message, String sender, String msgOnly) {
+		if(lastDrinks >0L&&System.currentTimeMillis()- lastDrinks <2000) return false; 
 		if(message.length()>50) return false; 
 		
 		
-		if(message.indexOf(commandPrefix+"gender")==(sender.length()+3)) {
-			
+		if(message.indexOf(commandPrefix+"order")==(sender.length()+3)) {
+			String toPlayer = null;
 			
 			if(msgOnly.length()>8&&msgOnly.length()<=25) {
-				String subs = msgOnly.substring(8);
+				String subs = msgOnly.substring(7);
 				if(subs.length()>2) {
-					if(!PlayerGroup.isPlayerOnline(subs)) {
-						safeSendPublicChatMessage("> Player not found. Make sure they are online and use their /realname");
-						return true;
-					}else sender = subs;
+					toPlayer = subs;
 				}
 			}
 			
-			
 			Random coin = new Random();
-			int toss = coin.nextInt(allSex.length);
-			lastLgbt = System.currentTimeMillis();
-			String msg = "> "+sender+" identifies as "+allSex[toss].toLowerCase()+"!";
-			msg = msg.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
-			safeSendPublicChatMessage(msg);
+			int toss = coin.nextInt(allDrinks.length);
+			int amount = coin.nextInt(6);
+			if(amount<1) amount=1;
+			lastDrinks = System.currentTimeMillis();
+
+			if(toPlayer!=null){
+				String msg = "> "+sender+" ordered "+amount+ " "+allDrinks[toss].toLowerCase()+" to their friend "+ toPlayer +"!";
+				msg = msg.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
+				safeSendPublicChatMessage(msg);
+			}else {
+				String msg = "> "+sender+" just ordered "+amount+ " "+allDrinks[toss].toLowerCase()+"!";
+				msg = msg.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
+				safeSendPublicChatMessage(msg);
+			}
+			
 			return true;
 		}
 		return false;
@@ -330,8 +278,8 @@ public class ChatObserver {
 			else if(setting.title.equals("AFK reply")) {
 				afkResponse = setting.value == 0;
 			}
-			else if(setting.title.equals("LGBT")) {
-				allowLgbt = setting.value == 0;
+			else if(setting.title.equals("drinks")) {
+				allowDrinks = setting.value == 0;
 			}
 			else if(setting.title.equals("party tpa")) {
 				partyTPA = setting.value == 0;
@@ -346,8 +294,8 @@ public class ChatObserver {
 		EntityPlayerSP p = Minecraft.getMinecraft().player;
 		if(p==null) return;
 		switch (action) {
-		case "LGBT ad":
-			advertiseLgbt();
+		case "drinks ad":
+			advertiseDrinks();
 			break;
 		case "party ad":
 			advertiseParty();
@@ -380,13 +328,13 @@ public class ChatObserver {
 		}
 	}
 
-	private static void advertiseLgbt() {
-		if(!allowLgbt) {
-			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("<"+Bartender.NAME+"> Gender command is not enabled!"));
+	private static void advertiseDrinks() {
+		if(!allowDrinks) {
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("<"+Bartender.NAME+"> Drinks command is not enabled!"));
 			return;
 		}
 		else {
-			Minecraft.getMinecraft().player.sendChatMessage("> Not sure about someone's gender? Type: "+commandPrefix+"gender or "+commandPrefix+"gender (player) to find out! ");
+			Minecraft.getMinecraft().player.sendChatMessage("> Need a drink? Type @order or @order (player)");
 		}
 		
 	}

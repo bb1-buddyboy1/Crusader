@@ -2,6 +2,7 @@ package com.drunkshulker.bartender.client.gui;
 
 import com.drunkshulker.bartender.client.gui.clickgui.ClickGui;
 import com.drunkshulker.bartender.client.gui.clickgui.ClickGuiSetting;
+import com.drunkshulker.bartender.client.gui.clickgui.theme.*;
 import com.drunkshulker.bartender.client.gui.overlaygui.MainMenuOverlayGui;
 import com.drunkshulker.bartender.client.gui.overlaygui.OverlayGui;
 import com.drunkshulker.bartender.client.gui.overlaygui.PauseOverlayGui;
@@ -28,6 +29,16 @@ public class GuiHandler {
 	public static boolean showTooltips = true;
 	public static boolean txtHpAndFood = false;
 	public static boolean showTargetListing = true;
+
+	public static int currentTheme = 0;
+
+	public static GuiTheme[] themes = {
+			new GuiThemeDrunk(),
+			new GuiThemeFaraday(),
+			new GuiThemeInfinitum(),
+			new GuiThemeDesertBunny(),
+			new GuiThemeBait()
+	};
 
 	@SubscribeEvent public void onRenderGui(RenderGameOverlayEvent.Post event){
 		Minecraft mc = Minecraft.getMinecraft();
@@ -86,6 +97,9 @@ public class GuiHandler {
 				break;
 			case "HP overlay":
 				showHP = setting.value == 1;			
+				break;
+			case "theme":
+				currentTheme = setting.value;
 				break;
 			case "keybinds":
 				showBinds = setting.value==0;

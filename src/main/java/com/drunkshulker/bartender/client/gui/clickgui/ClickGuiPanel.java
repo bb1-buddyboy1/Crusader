@@ -1,5 +1,6 @@
 package com.drunkshulker.bartender.client.gui.clickgui;
 
+import com.drunkshulker.bartender.client.gui.clickgui.theme.GuiTheme;
 import org.lwjgl.opengl.GL11;
 
 import com.drunkshulker.bartender.client.gui.GuiHandler;
@@ -153,18 +154,19 @@ public class ClickGuiPanel extends ClickGui{
 		
 		if(!expanded||contents==null||contents.length==0) h = 17;
 		else h = contents.length*17+17;
-		BeveledBox.drawBeveledBox(x, y, x+w, y+h, 1, 0x888700C6, 0x888700C6, 0x66000000);
-		
-		
+		GuiTheme theme = GuiHandler.themes[GuiHandler.currentTheme];
+		BeveledBox.drawBeveledBox(x, y, x+w, y+h, 1,
+				theme.bgBorder(), theme.bgBorder(), theme.bgFill());
+
 		if(mouseOverHeader(mouseX, mouseY)) {
 			
-			BeveledBox.drawBeveledBox(x, y, x+w, y+17, 1, 0x00000000, 0x00000000, 0x888700C6);
-			drawCenteredString(mc.fontRenderer,title, x+(w/2), y+5, Integer.parseInt("FFA11E", 16));
+			BeveledBox.drawBeveledBox(x, y, x+w, y+17, 1, 0x00000000, 0x00000000, theme.headerHover());
+			drawCenteredString(mc.fontRenderer,title, x+(w/2), y+5, Integer.parseInt(theme.headerText(), 16));
 		}
 		else {
 			
-			BeveledBox.drawBeveledBox(x, y, x+w, y+17, 1, 0x00000000, 0x00000000, 0x338700C6);
-			drawCenteredString(mc.fontRenderer,title, x+(w/2), y+5, Integer.parseInt("FFA11E", 16));
+			BeveledBox.drawBeveledBox(x, y, x+w, y+17, 1, 0x00000000, 0x00000000, theme.headerNormal());
+			drawCenteredString(mc.fontRenderer,title, x+(w/2), y+5, Integer.parseInt(theme.headerText(), 16));
 		}
 		
 		
@@ -199,24 +201,28 @@ public class ClickGuiPanel extends ClickGui{
 	}
 
 	private void drawClickSetting(ClickGuiSetting setting, int ly, boolean hover) {
-		BeveledBox.drawBeveledBox(setting.renderMinX, setting.renderMinY, setting.renderMaxX, setting.renderMaxY, 1, 0x00000000, 0x00000000, 0x66000000);
-		drawCenteredString(mc.fontRenderer,setting.title, x+(w/2), y+5+ly, Integer.parseInt((hover)?"FFFFFF":"FFA11E", 16));
+		GuiTheme theme = GuiHandler.themes[GuiHandler.currentTheme];
+		BeveledBox.drawBeveledBox(setting.renderMinX, setting.renderMinY, setting.renderMaxX, setting.renderMaxY, 1, 0x00000000, 0x00000000, theme.hoverFill());
+		drawCenteredString(mc.fontRenderer,setting.title, x+(w/2), y+5+ly, Integer.parseInt((hover)?theme.textHover():theme.textNormal(), 16));
 	}
 	
 	private void drawClickCommandSetting(ClickGuiSetting setting, int ly, boolean hover) {
-		BeveledBox.drawBeveledBox(setting.renderMinX, setting.renderMinY, setting.renderMaxX, setting.renderMaxY, 1, 0x00000000, 0x00000000, 0x66000000);
-		drawCenteredString(mc.fontRenderer,Config.HOTKEY_COMMANDS[Integer.parseInt(setting.title)], x+(w/2), y+5+ly, Integer.parseInt((hover)?"FFFFFF":"FFA11E", 16));
+		GuiTheme theme = GuiHandler.themes[GuiHandler.currentTheme];
+		BeveledBox.drawBeveledBox(setting.renderMinX, setting.renderMinY, setting.renderMaxX, setting.renderMaxY, 1, 0x00000000, 0x00000000, theme.hoverFill());
+		drawCenteredString(mc.fontRenderer,Config.HOTKEY_COMMANDS[Integer.parseInt(setting.title)], x+(w/2), y+5+ly, Integer.parseInt((hover)?theme.textHover():theme.textNormal(), 16));
 	}
 
 	private void drawTextSetting(ClickGuiSetting setting, int ly, boolean hover) {
-		BeveledBox.drawBeveledBox(setting.renderMinX, setting.renderMinY, setting.renderMaxX, setting.renderMaxY, 1, 0x00000000, 0x00000000, 0x66000000);
-		drawCenteredString(mc.fontRenderer,setting.title+": "+setting.values.get(setting.value).getAsString(), x+(w/2), y+5+ly, Integer.parseInt((hover)?"FFFFFF":"FFA11E", 16));
+		GuiTheme theme = GuiHandler.themes[GuiHandler.currentTheme];
+		BeveledBox.drawBeveledBox(setting.renderMinX, setting.renderMinY, setting.renderMaxX, setting.renderMaxY, 1, 0x00000000, 0x00000000, theme.hoverFill());
+		drawCenteredString(mc.fontRenderer,setting.title+": "+setting.values.get(setting.value).getAsString(), x+(w/2), y+5+ly, Integer.parseInt((hover)?theme.textHover():theme.textNormal(), 16));
 	}
 
 	private void drawDropSlot() {
+		GuiTheme theme = GuiHandler.themes[GuiHandler.currentTheme];
 		GL11.glPushMatrix();
 		GL11.glTranslated(0, 0, 499); 
-		BeveledBox.drawBeveledBox(roundX(x), roundY(y), roundX(x)+w, roundY(y)+h, 1, 0x667A7A7A, 0x667A7A7A, 0x00000000);
+		BeveledBox.drawBeveledBox(roundX(x), roundY(y), roundX(x)+w, roundY(y)+h, 1, theme.dropSlot(), theme.dropSlot(), 0x00000000);
 		GL11.glPopMatrix();
 	}
 

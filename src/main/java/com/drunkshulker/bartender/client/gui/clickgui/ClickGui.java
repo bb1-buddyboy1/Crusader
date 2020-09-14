@@ -3,6 +3,8 @@ package com.drunkshulker.bartender.client.gui.clickgui;
 import java.io.IOException;
 
 import com.drunkshulker.bartender.Bartender;
+import com.drunkshulker.bartender.client.gui.clickgui.theme.GuiTheme;
+import com.drunkshulker.bartender.client.gui.clickgui.theme.GuiThemeDrunk;
 import org.lwjgl.opengl.GL11;
 
 import com.drunkshulker.bartender.client.gui.GuiConfig;
@@ -16,7 +18,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 
 public class ClickGui extends GuiScreen{
 	
-	public static ClickGuiPanel[] panels;
+	public static ClickGuiPanel[] panels = new ClickGuiPanel[0];
 	
 	public static boolean click = false;
 	public static boolean middleClick = false;
@@ -27,7 +29,7 @@ public class ClickGui extends GuiScreen{
 	public static int dragBeginY = 0;
 	
 	public static ClickGuiPanel currentDraggable;
-	
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		Minecraft mc = Minecraft.getMinecraft();

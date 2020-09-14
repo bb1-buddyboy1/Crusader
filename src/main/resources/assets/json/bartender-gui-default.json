@@ -34,6 +34,21 @@
 					]
 				},
 				{
+					"title": "theme",
+					"type": "text",
+					"value": 0,
+					"values": [
+						"drunk",
+						"faraday",
+						"infinitum",
+						"desert_bunny",
+						"bait"
+					],
+					"desc": [
+						"GUI COLOR THEMES"
+					]
+				},
+				{
 					"title": "target list",
 					"type": "text",
 					"value": 1,
@@ -1260,7 +1275,7 @@
 					]
 				},
 				{
-					"title": "LGBT",
+					"title": "drinks",
 					"type": "text",
 					"value": 1,
 					"values": [
@@ -1268,14 +1283,14 @@
 						"off"
 					],
 					"desc": [
-						"ALLOW PLAYERS TO USE THE GENDER COMMAND"
+						"ALLOW PLAYERS TO ORDER DRINKS USING THE ORDER COMMAND"
 					]
 				},
 				{
-					"title": "LGBT ad",
+					"title": "drinks ad",
 					"type": "click",
 					"desc": [
-						"SEND CHAT MESSAGE ADVERTISING THE GENDER COMMAND"
+						"SEND CHAT MESSAGE ADVERTISING THE DRINKS COMMAND"
 					],
 					"closeOnClick": true
 				},

@@ -11,6 +11,7 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+
 public class InventoryUtils {
     private Minecraft mc = Minecraft.getMinecraft();
 
@@ -71,12 +72,11 @@ public class InventoryUtils {
         return currentCount;
     }
 
-    public boolean inProgress = false;
 
+    public boolean inProgress = false;
 
     public void swapSlot(int slot) {
         mc.player.inventory.currentItem = slot;
-        
     }
 
 
@@ -84,7 +84,7 @@ public class InventoryUtils {
         if (getSlotsHotbar(itemID) != null) {
             swapSlot(getSlotsHotbar(itemID).get(0));
         }
-        
+
     }
 
     private void inventoryClick(int slot, ClickType type) {
@@ -99,7 +99,7 @@ public class InventoryUtils {
         int slot1 = gsfinh.get(0);
         int slot2 = 36;
         for(int i = 36; i<44;i++) {
-        
+
             ItemStack currentItemStack = mc.player.inventoryContainer.getInventory().get(i);
             if (currentItemStack.isEmpty()) {
                 slot2 = i;
@@ -179,7 +179,6 @@ public class InventoryUtils {
 	    thread.start();
     }
 
-
     public void quickMoveSlot(int slotFrom, long delayMillis) {
         if (inProgress) return;
         Thread thread = new Thread(){
@@ -224,7 +223,6 @@ public class InventoryUtils {
     }
     
 
- 
     public void throwAllInSlot(int slot, long delayMillis) {
         if (inProgress) return;
 
@@ -243,5 +241,4 @@ public class InventoryUtils {
 	    };
 	    thread.start();
     }
-
 }
