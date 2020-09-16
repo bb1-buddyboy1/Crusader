@@ -5,7 +5,7 @@ Some of Bartender's features need hacks from other clients in order to work prop
 
 Watch this [video](https://www.youtube.com/watch?v=X0bfymdt9vI) and read the [wiki](https://github.com/DrunkShulker/Bartender/wiki) to learn more about Bartender's features.
 
-## Installation
+## Install
 1. It is recommended that you create a fresh instance of Minecraft for the Bartender installation. At least make a copy of your `.minecraft` directory so you have a backup in case anything goes wrong with the installation.
 2. Install Forge for Minecraft 1.12.2.
 3. If you want to use other hack clients with Bartender, install them at this point. Some of Bartender's features need hacks from other clients in order to work properly. See the list of required hacks [here](https://github.com/DrunkShulker/Bartender/wiki/Required-hacks). Impact and Kami BLUE are probably the best way to go, as Bartender was developed and tested with them.
@@ -13,7 +13,7 @@ Watch this [video](https://www.youtube.com/watch?v=X0bfymdt9vI) and read the [wi
 5. Move the release `.jar` into `mods` folder in your Minecraft directory.
 6. Launch Minecraft. The custom Forge loading screen will appear the second time you launch Minecraft.
 
-## Usage
+## Tutorial
 See the [wiki](https://github.com/DrunkShulker/Bartender/wiki).
 
 ## Update
@@ -31,7 +31,8 @@ Thanks to the following projects for making Bartender possible:
 - [Baritone](https://github.com/cabaletta/baritone)
 - [Forge](https://files.minecraftforge.net/)
 
-## Report bugs
+## Support
 - Before reporting anything, see if your problem is already answered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
+- Talk people on [Bartender Help](https://discord.gg/93W9hUA) Discord server.
 - You can report bugs/crashes/problems in [issues](https://github.com/DrunkShulker/Bartender/issues). Please describe the problem in detail and include the steps to reproduce.
 - Compatibility issues with utility mods other than Impact and Kami BLUE are most likely ignored!
