@@ -33,6 +33,6 @@ Thanks to the following projects for making Bartender possible:
 
 ## Support
 - Before reporting anything, see if your problem is already answered [here](https://github.com/DrunkShulker/Bartender/wiki/Known-issues-and-solutions).
-- Talk people on [Bartender Support](https://discord.gg/93W9hUA) Discord server.
-- You can report bugs/crashes/problems in [issues](https://github.com/DrunkShulker/Bartender/issues). Please describe the problem in detail and include the steps to reproduce.
+- Join [Bartender Support](https://discord.gg/93W9hUA) Discord server.
+- Report bugs/crashes/problems in [issues](https://github.com/DrunkShulker/Bartender/issues). Please describe the problem in detail and include the steps to reproduce.
 - Compatibility issues with utility mods other than Impact and Kami BLUE are most likely ignored!
