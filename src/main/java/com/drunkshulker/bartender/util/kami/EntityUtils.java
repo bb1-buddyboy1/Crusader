@@ -18,7 +18,6 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 
-
 public class EntityUtils {
     private static Minecraft mc = Minecraft.getMinecraft();
 
@@ -91,6 +90,16 @@ public class EntityUtils {
     public static boolean isHostileMob(Entity entity) {
         return entity.isCreatureType(EnumCreatureType.MONSTER, false) && !isNeutralMob(entity);
     }
+
+
+    public static Vec3d getInterpolatedPos(Entity entity, float ticks) {
+        return new Vec3d(entity.lastTickPosX, entity.lastTickPosY, entity.lastTickPosZ).add(getInterpolatedAmount(entity, ticks));
+    }
+
+    public static Vec3d getInterpolatedRenderPos(Entity entity, float ticks){
+        return getInterpolatedPos(entity, ticks).subtract(Minecraft.getMinecraft().getRenderManager().renderPosX, Minecraft.getMinecraft().getRenderManager().renderPosY, Minecraft.getMinecraft().getRenderManager().renderPosZ);
+    }
+
 
 
     public static boolean isDrivenByPlayer(Entity entityIn) {
@@ -205,7 +214,7 @@ public class EntityUtils {
         if (mc.world==null||mc.world.loadedEntityList == null) return new ArrayList<Entity>();
         ArrayList<Entity> entityList = new ArrayList<Entity>();
         for (Entity entity : mc.world.loadedEntityList) {
-      
+         
             if (!isLiving(entity)) continue;
             if (entity == mc.player) continue;
             if (entity instanceof EntityPlayer) {
@@ -225,7 +234,6 @@ public class EntityUtils {
         }
         return entityList;
     }
-
 
 
     boolean canEntityFeetBeSeen(Entity entityIn) {

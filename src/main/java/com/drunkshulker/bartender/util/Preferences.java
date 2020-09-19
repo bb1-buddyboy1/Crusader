@@ -5,14 +5,7 @@ import com.drunkshulker.bartender.client.gui.clickgui.ClickGui;
 import com.drunkshulker.bartender.client.gui.clickgui.ClickGuiPanel;
 import com.drunkshulker.bartender.client.gui.clickgui.ClickGuiSetting;
 import com.drunkshulker.bartender.client.input.ChatObserver;
-import com.drunkshulker.bartender.client.module.Aura;
-import com.drunkshulker.bartender.client.module.AutoBuild;
-import com.drunkshulker.bartender.client.module.AutoEat;
-import com.drunkshulker.bartender.client.module.BaseFinder;
-import com.drunkshulker.bartender.client.module.Bodyguard;
-import com.drunkshulker.bartender.client.module.Flight;
-import com.drunkshulker.bartender.client.module.PlayerParticles;
-import com.drunkshulker.bartender.client.module.SafeTotemSwap;
+import com.drunkshulker.bartender.client.module.*;
 import com.drunkshulker.bartender.client.social.PlayerGroup;
 
 import net.minecraft.client.Minecraft;
@@ -59,6 +52,10 @@ public class Preferences {
 				break;
 			case "flight":
 				Flight.applyPreferences(panel.getContents());
+				break;
+			case "grief":
+				AutoLight.applyPreferences(panel.getContents());
+				Scaffold.applyPreferences(panel.getContents());
 				break;
 			default:
 				if(Minecraft.getMinecraft().player!=null)Minecraft.getMinecraft().player.sendMessage(new TextComponentString("<Bartender> ERROR PREFERENCE NOT HANDLED IN: "+panel.getTitle()));

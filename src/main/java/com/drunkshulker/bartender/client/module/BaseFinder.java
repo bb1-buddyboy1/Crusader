@@ -480,6 +480,11 @@ public class BaseFinder {
 				enabled = setting.value == 0;
 				break;
 			case "travel":
+				if(orbit!=(setting.value == 0)
+						||customTarget != (setting.value ==2)) {
+					if(enabled)
+					setTask(FinderTask.PAUSE);
+				}
 				orbit = setting.value == 0;
 				customTarget = setting.value ==2;
 				break;

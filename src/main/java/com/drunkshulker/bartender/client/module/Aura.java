@@ -10,6 +10,7 @@ import com.drunkshulker.bartender.util.kami.EntityUtils.EntityPriority;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -39,6 +40,7 @@ public class Aura {
 	private static boolean hitCrystals = false;
 	static Random random = new Random();
 	private static boolean forceOff = false;
+	private static boolean useAutoWeapon = false;
 
 	@SubscribeEvent
 	public void playerTick(TickEvent.PlayerTickEvent event){
@@ -84,7 +86,11 @@ public class Aura {
 		}
 
         
-    	mc.playerController.attackEntity(mc.player, target);
+    	if(!(target instanceof EntityEnderCrystal)&&useAutoWeapon){
+    		AutoWeapon.equipBestWeapon();
+		}
+		
+		mc.playerController.attackEntity(mc.player, target);
 		mc.player.swingArm(EnumHand.MAIN_HAND);
 		
 	}
@@ -172,6 +178,9 @@ public class Aura {
 				break;
 			case "mobs":
 				attackPassiveMobs = setting.value == 0;
+				break;
+			case "auto weapon":
+				useAutoWeapon = setting.value == 1;
 				break;
 			case "D ticks":
 				tickDelay = Integer.parseInt(setting.values.get(setting.value).getAsString());

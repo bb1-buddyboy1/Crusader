@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 
+
 public class InventoryUtils {
     private Minecraft mc = Minecraft.getMinecraft();
 
@@ -38,7 +39,6 @@ public class InventoryUtils {
         return getSlots(9, 35, itemId);
     }
 
-
     public ArrayList<Integer> getSlotsFullInv(int min, int max, int itemId) {
     	ArrayList<Integer> slots = new ArrayList<>();
     	for(int i = min; i < max; i++) {
@@ -49,7 +49,6 @@ public class InventoryUtils {
     	if(slots.isEmpty()) return slots;
         else return null;
     }
-
 
     public ArrayList<Integer> getSlotsFullInvHotbar(int itemId){
         return getSlots(36, 44, itemId);
@@ -75,8 +74,10 @@ public class InventoryUtils {
 
     public boolean inProgress = false;
 
+
     public void swapSlot(int slot) {
         mc.player.inventory.currentItem = slot;
+        
     }
 
 
@@ -84,7 +85,7 @@ public class InventoryUtils {
         if (getSlotsHotbar(itemID) != null) {
             swapSlot(getSlotsHotbar(itemID).get(0));
         }
-
+        
     }
 
     private void inventoryClick(int slot, ClickType type) {
@@ -99,7 +100,7 @@ public class InventoryUtils {
         int slot1 = gsfinh.get(0);
         int slot2 = 36;
         for(int i = 36; i<44;i++) {
-
+        
             ItemStack currentItemStack = mc.player.inventoryContainer.getInventory().get(i);
             if (currentItemStack.isEmpty()) {
                 slot2 = i;
@@ -150,7 +151,7 @@ public class InventoryUtils {
 	    thread.start();
     }
 
-
+ 
     public void moveAllToSlot(int slotFrom, int slotTo, long delayMillis) {
         if (inProgress) return;
         Thread thread = new Thread(){
@@ -178,6 +179,7 @@ public class InventoryUtils {
 	    };
 	    thread.start();
     }
+
 
     public void quickMoveSlot(int slotFrom, long delayMillis) {
         if (inProgress) return;
@@ -223,6 +225,7 @@ public class InventoryUtils {
     }
     
 
+
     public void throwAllInSlot(int slot, long delayMillis) {
         if (inProgress) return;
 
@@ -241,4 +244,5 @@ public class InventoryUtils {
 	    };
 	    thread.start();
     }
+
 }

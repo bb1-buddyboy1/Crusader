@@ -30,10 +30,10 @@ public class ChatObserver {
 	
 	public static boolean partyTPA = false;
 	
-	public static final char commandPrefix = '@';
+	public static final char commandPrefix = '@', botMsgPrefix = '$';
 	private long lastDrinks = 0;
-	final String pornUrl = "https://www.pornhub.com/random";
 	
+	final String pornUrl = "https://www.pornhub.com/random";
 	private long lastPornhubSearch = 0;
 	public static boolean pornhub = false;
 	Timer timer;
@@ -88,7 +88,7 @@ public class ChatObserver {
 	
 	private boolean execHelp(String message, String sender, String text) {
 		if(message.indexOf(commandPrefix+"help")==(sender.length()+3)&&text.length()<=5) {
-			safeSendPublicChatMessage("> "+Bartender.NAME+" "+Bartender.VERSION+" by DrunkShulker");
+			safeSendPublicChatMessage(botMsgPrefix+" "+Bartender.NAME+" "+Bartender.VERSION+" by DrunkShulker");
 			return true;
 		}
 		return false;
@@ -107,6 +107,9 @@ public class ChatObserver {
 		    else sender+=c;
 		}
 
+		if(sender.length()>2&& !Minecraft.getMinecraft().isSingleplayer()) sender = sender.substring(0, sender.length()-2);
+		System.out.println("sender: "+sender);
+		System.out.println("sender: "+sender.replaceAll("[^A-Za-z0-9()$'!?:.,_> \\[\\]]", ""));
 		return sender;
 	}
 	
@@ -122,16 +125,15 @@ public class ChatObserver {
 	public void pornSearch(String message, String sender) {
 		if(lastPornhubSearch>0L&&System.currentTimeMillis()-lastPornhubSearch<2000) return; 
 		if(message.contains("s PornHub search: ")) return; 
-		
-		
-		if(message.indexOf(commandPrefix+"sex")==(sender.length()+3)) {
+
+		if(message.indexOf(commandPrefix+"sex")==(sender.length()+3+2)) {
 
 			final String senderf = sender;	
 			
 			
 			
 			if(lastPornhubSearch>0L&&System.currentTimeMillis()-lastPornhubSearch<15000) {
-				String messageText = "> You have to wait 15 seconds before executing "+commandPrefix+"sex again";
+				String messageText = botMsgPrefix+" You have to wait 15 seconds before executing "+commandPrefix+"sex again";
 				safeSendPublicChatMessage(messageText);
 				return;
 			}
@@ -161,8 +163,8 @@ public class ChatObserver {
 	    				in.close();
 	    				
 	    				
-	    				String r = "> "+senderf+"'s PornHub search: "+ response.substring(response.indexOf("<title>") + 7, response.indexOf("</title>"));
-						r = r.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
+	    				String r = botMsgPrefix+" "+senderf+"'s PornHub search: "+ response.substring(response.indexOf("<title>") + 7, response.indexOf("</title>"));
+						r = r.replaceAll("[^A-Za-z0-9()$'!?:.,_> \\[\\]]", "");
 	    				safeSendPublicChatMessage(r.substring(0, r.length()-13));
 	    			} else {
 	    				Minecraft.getMinecraft().player.sendMessage(new TextComponentString("<"+Bartender.NAME+"> @sex failed due to pornhub api."));
@@ -183,11 +185,11 @@ public class ChatObserver {
 	}
 
 	private boolean orderDrinks(String message, String sender, String msgOnly) {
-		if(lastDrinks >0L&&System.currentTimeMillis()- lastDrinks <2000) return false; 
-		if(message.length()>50) return false; 
+		if(lastDrinks >0L&&System.currentTimeMillis()-lastDrinks<2000) return false; 
+		if(message.length()>60) return false; 
 		
 		
-		if(message.indexOf(commandPrefix+"order")==(sender.length()+3)) {
+		if(message.indexOf(commandPrefix+"order")==(sender.length()+3+2)) {
 			String toPlayer = null;
 			
 			if(msgOnly.length()>8&&msgOnly.length()<=25) {
@@ -204,12 +206,13 @@ public class ChatObserver {
 			lastDrinks = System.currentTimeMillis();
 
 			if(toPlayer!=null){
-				String msg = "> "+sender+" ordered "+amount+ " "+allDrinks[toss].toLowerCase()+" to their friend "+ toPlayer +"!";
-				msg = msg.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
+				String msg = botMsgPrefix+" "+sender+" just ordered "+amount+ " "+allDrinks[toss].toLowerCase()+" to their friend "+ toPlayer +"!";
+				msg = msg.replaceAll("[^A-Za-z0-9()$'!?:.,_> \\[\\]]", "");
+				msg = msg.replace(" r ", " ");
 				safeSendPublicChatMessage(msg);
 			}else {
-				String msg = "> "+sender+" just ordered "+amount+ " "+allDrinks[toss].toLowerCase()+"!";
-				msg = msg.replaceAll("[^A-Za-z0-9()'!?:.,_> \\[\\]]", "");
+				String msg = botMsgPrefix+" "+sender+" just ordered "+amount+ " "+allDrinks[toss].toLowerCase()+"!";
+				msg = msg.replaceAll("[^A-Za-z0-9()$'!?:.,_> \\[\\]]", "");
 				safeSendPublicChatMessage(msg);
 			}
 			
@@ -258,8 +261,9 @@ public class ChatObserver {
 		if(chatFix) {
 			if(messageIsCommand(event.getMessage())) return;
 			if(Config.CHAT_POST_FIX.equals("")) return;
-			
+
 			String fix = Config.CHAT_POST_FIX;
+			if(event.getMessage().contains(fix)) return; 
 			event.setMessage(event.getMessage()+fix);
 		}
 	}
@@ -314,7 +318,7 @@ public class ChatObserver {
 			return;
 		}
 		else {
-			Minecraft.getMinecraft().player.sendChatMessage("> Type "+commandPrefix+"sex to execute a random PornHub search!");
+			Minecraft.getMinecraft().player.sendChatMessage(botMsgPrefix+" Type "+commandPrefix+"sex to execute a random PornHub search!");
 		}
 	}
 
@@ -324,7 +328,7 @@ public class ChatObserver {
 			return;
 		}
 		else {
-			Minecraft.getMinecraft().player.sendChatMessage("> Party time! Tpa now and your request is automatically accepted! ");
+			Minecraft.getMinecraft().player.sendChatMessage(botMsgPrefix+" Party time! Tpa now and your request is automatically accepted! ");
 		}
 	}
 
@@ -334,7 +338,7 @@ public class ChatObserver {
 			return;
 		}
 		else {
-			Minecraft.getMinecraft().player.sendChatMessage("> Need a drink? Type @order or @order (player)");
+			Minecraft.getMinecraft().player.sendChatMessage(botMsgPrefix+" Need a drink? Type @order or @order (player)");
 		}
 		
 	}

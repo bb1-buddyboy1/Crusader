@@ -715,6 +715,45 @@
 			]
 		},
 		{
+			"name": "grief",
+			"desc": [
+				"GRIEFING TOOLS"
+			],
+			"x": 0,
+			"y": 0,
+			"expanded": false,
+			"contents": [
+				{
+					"title": "auto light",
+					"type": "text",
+					"value": 0,
+					"values": [
+						"OFF",
+						"ON"
+					],
+					"desc": [
+						"LIGHT UP ANY TNT YOU ARE LOOKING AT,",
+						"FLINT N STEEL MUST BE IN UR HOTBAR FOR THIS TO WORK"
+					]
+				},
+				{
+					"title": "auto tnt",
+					"type": "text",
+					"value": 0,
+					"values": [
+						"OFF",
+						"ON"
+					],
+					"desc": [
+						"PLACE TNT BLOCKS UNDER YOU",
+						"THE TNT MUST BE IN YOUR HOTBAR FOR THIS TO WORK"
+					]
+				}
+
+
+			]
+		},
+		{
 			"name": "aura",
 			"desc": [
 				"AUTO HIT ENTITIES YOU CAN REACH"
@@ -736,6 +775,18 @@
 						"AUTO=CONTROLLED BY BODYGUARD ENEMY LIST",
 						"ON=HIT ANY ENTITY EXCEPT GROUP MEMBERS AND FRIENDS",
 						"OFF=ALWAYS OFF"
+					]
+				},
+				{
+					"title": "auto weapon",
+					"type": "text",
+					"value": 1,
+					"values": [
+						"NO",
+						"YES"
+					],
+					"desc": [
+						"AUTO EQUIP BEST WEAPON WHEN ATTACKING"
 					]
 				},
 				{
@@ -1074,7 +1125,7 @@
 					"type": "text",
 					"value": 1,
 					"values": [
-						"200",
+						"300",
 						"500",
 						"700",
 						"800",

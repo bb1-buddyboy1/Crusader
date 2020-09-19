@@ -18,7 +18,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 
 public class ClickGui extends GuiScreen{
 	
-	public static ClickGuiPanel[] panels = new ClickGuiPanel[0];
+	public static ClickGuiPanel[] panels;
 	
 	public static boolean click = false;
 	public static boolean middleClick = false;

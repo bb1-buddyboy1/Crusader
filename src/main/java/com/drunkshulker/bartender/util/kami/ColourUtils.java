@@ -151,12 +151,12 @@ public class ColourUtils {
         return colorList;
     }
 
-
+ 
     public static int toRGBA(double r, double g, double b, double a) {
         return toRGBA((float) r, (float) g, (float) b, (float) a);
     }
 
-
+  
     public String getColorNameFromRgb(int r, int g, int b) {
         ArrayList<ColorName> colorList = initColorList();
         ColorName closestMatch = null;
@@ -177,7 +177,7 @@ public class ColourUtils {
         }
     }
 
-
+ 
     public String getColorNameFromHex(int hexColor) {
         int r = (hexColor & 0xFF0000) >> 16;
         int g = (hexColor & 0xFF00) >> 8;

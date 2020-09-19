@@ -71,15 +71,16 @@ public class GuiConfig {
 			
 			
 			String configVersion = jsonObject.get("bartender_version").getAsString();
-			if(configVersion.equals(Bartender.VERSION)==false) {
+			if(!configVersion.equals(Bartender.VERSION)) {
 				
 				System.out.println("GuiConfig file was from an older version, using default GUI config!");
 				defaults();
-				return;
+				
 			}
-
-			config = jsonObject;
-			System.out.println("GUI config loaded.");
+			else {
+				config = jsonObject;
+				System.out.println("GUI config loaded.");
+			}
 			
 		}
 		else {
